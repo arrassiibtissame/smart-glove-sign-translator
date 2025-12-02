@@ -1,7 +1,16 @@
 # Smart-Glove-Sign-Translator
 Project Overview
 The Sign Language Translator is a real-time system that translates hand gestures captured by a sensor glove into text. It is designed to assist people who communicate through sign language by converting gestures into written words. Recognized gestures are displayed instantly on the frontend and stored in a database for history and logging.
-### Detailed Steps
+
+## 📖 Table of Contents
+
+- [Overview](#-DetailedSteps)
+- [Technology Stack](#-Technology-stack)
+- [Getting Started](#-Getting-started)
+- [Folder Structure](#-Folder-structure)
+- [License](#-license)
+  
+### DetailedSteps
 1. **Glove Sensors**  
    - The glove captures data such as finger/flex positions, hand motion, orientation.  
    - Sends raw sensor data to the AI script running on your PC.
@@ -21,7 +30,7 @@ The Sign Language Translator is a real-time system that translates hand gestures
 
 ---
 
-## Technology Stack
+## Technology-stack
 
 | Component / Role                 Technology / Tool                            |
 |--------------------------------|----------------------------------------------|
@@ -31,19 +40,36 @@ The Sign Language Translator is a real-time system that translates hand gestures
 | Frontend UI                    | React + Vite + TypeScript                    |
 | Database & Auth & Storage      | Supabase                                     |
 
-## What You (Software) Will Do
+## What (Software) Will Do
 
 - Read sensor data from the glove on the PC  
 - Run trained AI model for gesture → text translation  
 - Send recognized text immediately to the frontend (WebSocket)  
 - Insert recognized text into Supabase asynchronously for history/logging  
 - Build a frontend UI to:  
-  - Display recognized gestures live  
+  - Display recognized gestures live
+ 
+### Folder-structure
+smart-glove-sign-translator/
+│
+├── frontend/                # React + Vite + TS app
+│   ├── src/
+│   │   ├── client.ts       # Supabase client
+│   │   ├── App.tsx
+│   │   └── components/
+│   └── package.json
+│
+├── ai/                     # AI script + model
+│   ├── gesture_ai.py       # Reads glove, predicts gestures, sends to frontend & Supabase
+│   └── model/              # Trained AI model files
+│
+└── README.md               # Project documentation
 
-## Getting Started
+
+
+## Getting-started
 
 ### Prerequisites
-
 - Node.js & npm / yarn  
 - Python 3.x  
 - Supabase account & project (get your `URL` and `API key`)  
@@ -67,7 +93,7 @@ The Sign Language Translator is a real-time system that translates hand gestures
    pip install -r requirements.txt
    python gesture_ai.py
 
-### License & Contribution
+### license
 Feel free to contribute! Open an issue or a pull request.
 If you use this project, please mention the original repository.
 
