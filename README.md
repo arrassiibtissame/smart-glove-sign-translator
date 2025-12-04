@@ -10,8 +10,8 @@ The Sign Language Translator is a real-time system that translates hand gestures
    - Processes sensor data to recognize gestures.  
    - Converts recognized gestures into **text**.  
    - Immediately sends this text to two places:  
-     - **Frontend** — for instant display  
-     - **Supabase** — to store translation history asynchronously  
+     - **Frontend** :for instant display  
+     - **Supabase** :to store translation history asynchronously  
 3. **Frontend (React + Vite + TypeScript)**  
    - Receives predicted text (via WebSocket) and shows it live.  
    - Subscribes to Supabase updates if you want to show gesture history or logs.
