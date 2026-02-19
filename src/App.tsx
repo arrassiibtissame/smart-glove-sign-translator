@@ -1,35 +1,28 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import {
+  SidebarProvider,
+  SidebarInset,
+  SidebarTrigger,
+} from "@/components/ui/sidebar";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { SideBar } from "./components/Layout/SideBar";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <TooltipProvider>
+      <SidebarProvider defaultOpen={true}>
+        <SideBar />
+
+        <SidebarInset>
+          <header className="flex items-center gap-4 border-b p-4">
+            <SidebarTrigger />
+            <h1 className="text-xl font-semibold">Dashboard</h1>
+          </header>
+
+          <div className="p-6">Content here</div>
+        </SidebarInset>
+      </SidebarProvider>
+    </TooltipProvider>
+  );
 }
 
-export default App
+export default App;
