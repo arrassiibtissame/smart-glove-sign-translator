@@ -21,10 +21,8 @@ function App() {
               <Route path="/dashboard" element={<DashboardPage />} />
               {/* learning route */}
               <Route path="/learning" element={<LearnPage />} />
-
-              {/* Add more routes here as you build them */}
-              {/* <Route path="/history" element={<HistoryPage />} /> */}
-              {/* <Route path="/settings" element={<SettingsPage />} /> */}
+              <Route path="/history" element={<div>History Page</div>} />
+              {/* Add routes*/}
             </Routes>
           </main>
         </div>
