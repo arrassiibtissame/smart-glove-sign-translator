@@ -7,20 +7,21 @@ export function AlphabetCard() {
 
   return (
     <Card
-      className="border border-gray-200 shadow-sm w-80 rounded-2xl cursor-pointer hover:shadow-md transition-shadow duration-300 "
-      onClick={() => navigate("/")}
+      className="border border-gray-200 shadow-sm w-92 rounded-2xl cursor-pointer hover:shadow-md transition-shadow duration-300 "
+      onClick={() => navigate("")}
     >
-      {/* will work on teh navigation for the card when we click it */}
+      {/* will work on the navigation for the card when we click it */}
+      {/* Card Content container */}
       <CardContent className="flex flex-col items-center gap-3 p-4">
-        {/* Blue banner with hand icon */}
+        {/* Blue box with hand icon */}
         <div className="w-full flex items-center justify-center bg-blue-500 rounded-xl py-8">
           <Hand className="w-14 h-14 text-white" />
         </div>
 
-        {/* Title */}
+        {/* middle Title of card*/}
         <p className="text-gray-900 font-bold text-xl">Alphabet</p>
 
-        {/* Description */}
+        {/* Description of card */}
         <p className="text-gray-500 text-sm text-center">
           Learn the ASL alphabet from A to Z
         </p>
