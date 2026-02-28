@@ -31,7 +31,7 @@ export function AlphabetLearningPage() {
       setCurrentIndex(curentIndex - 1);
     }
   };
-  //the function  will set the currentIndex to which letter teh user has selected using teh LetterGrid in the buttom
+  //the function  will set the currentIndex to which letter the user has selected using teh LetterGrid in the buttom
   const handleSelectLetter = (index: number) => {
     setCurrentIndex(index);
   };
