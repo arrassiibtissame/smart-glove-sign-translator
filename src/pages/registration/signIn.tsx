@@ -1,8 +1,8 @@
 import { useState, type ChangeEvent, type FormEvent } from "react";
 import { Link } from "react-router-dom";
 
-import Logo from "@/assets/Logo.png"; // replace with your real logo
-import SideImage from "@/assets/signIn.jpg"; // replace with your real left image
+import Logo from "@/assets/Logo.png"; 
+import SideImage from "@/assets/signIn.jpg"; 
 
 type SignInForm = {
   email: string;
@@ -126,30 +126,6 @@ export default function SignIn({ onLogin }: Props) {
 
             </div>
 
-            {/* Remember + Forgot */}
-            <div className="flex justify-between items-center text-sm">
-
-              <label className="flex items-center gap-2">
-
-                <input
-                  type="checkbox"
-                  name="remember"
-                  checked={form.remember}
-                  onChange={handleChange}
-                />
-
-                Remember Me
-
-              </label>
-
-              <button
-                type="button"
-                className="text-blue-600 hover:underline"
-              >
-                Forgot Password?
-              </button>
-
-            </div>
 
             {/* Submit */}
             <button

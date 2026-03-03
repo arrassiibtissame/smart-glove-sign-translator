@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import authImage from "@signUP.jpg";
+import authImage from "@/assets/signUP.jpg";
+import Logo from "@/assets/Logo.png"; 
 
 export default function SignUp() {
   return (
@@ -13,11 +14,20 @@ export default function SignUp() {
           <div className="w-full max-w-md">
 
             {/* Logo */}
-            <div className="text-center mb-6">
-              <h1 className="text-blue-600 font-bold text-xl">
-                SignBridge
-              </h1>
-            </div>
+            
+            <div className="flex flex-col items-center mb-6">
+
+  <img
+    src={Logo}
+    alt="SignBridge Logo"
+    className="h-12 mb-3"
+  />
+
+  <h1 className="text-2xl font-semibold text-gray-900">
+    Welcome to <span className="text-blue-600 font-bold">SignBridge</span>
+  </h1>
+
+</div>
 
             {/* Title */}
             <h2 className="text-2xl font-semibold mb-2">
