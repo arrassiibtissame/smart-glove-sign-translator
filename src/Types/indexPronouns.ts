@@ -1,5 +1,5 @@
 export type indexPronouns = {
-  pronoun: string,
+  letter: string,
   description: string,
   tips:string[],
   image: string,

@@ -2,7 +2,7 @@ import type { indexPronouns } from "@/Types/indexPronouns";
 
 export const PronounsData: indexPronouns[] = [
    {
-    pronoun: "I / ME",
+    letter: "I / ME",
     description: "Signed by pointing your index finger toward your chest.",
     tips: [
       "Use a relaxed index finger.",
@@ -13,7 +13,7 @@ export const PronounsData: indexPronouns[] = [
     isLearned: false
   },
   {
-    pronoun: "YOU",
+    letter: "YOU",
     description: "Signed by pointing your index finger toward the person you are addressing.",
     tips: [
       "Maintain eye contact.",
@@ -24,7 +24,7 @@ export const PronounsData: indexPronouns[] = [
     isLearned: false
   },
   {
-    pronoun: "HE",
+    letter: "HE",
     description: "Signed by pointing toward a male person. Traditionally near the forehead area.",
     tips: [
       "If present, point directly at the person.",
@@ -35,7 +35,7 @@ export const PronounsData: indexPronouns[] = [
     isLearned: false
   },
   {
-    pronoun: "SHE",
+    letter: "SHE",
     description: "Signed by pointing toward a female person. Traditionally near the chin area.",
     tips: [
       "Point clearly toward the person.",
@@ -46,7 +46,7 @@ export const PronounsData: indexPronouns[] = [
     isLearned: false
   },
   {
-    pronoun: "WE / US",
+    letter: "WE / US",
     description: "Signed by forming a loose 'G' handshape and moving it in a small arc from one shoulder to the other.",
     tips: [
       "Start near one shoulder and move smoothly to the other.",
@@ -57,7 +57,7 @@ export const PronounsData: indexPronouns[] = [
     isLearned: false
   },
   {
-    pronoun: "THEY / THEM",
+    letter: "THEY / THEM",
     description: "Signed by pointing in an arc toward multiple people or a previously established group location.",
     tips: [
       "Sweep your index finger across the group.",
@@ -68,7 +68,7 @@ export const PronounsData: indexPronouns[] = [
     isLearned: false
   },
   {
-    pronoun: "MY",
+    letter: "MY",
     description: "Signed by placing an open hand flat against your chest.",
     tips: [
       "Keep fingers together.",
@@ -79,7 +79,7 @@ export const PronounsData: indexPronouns[] = [
     isLearned: false
   },
   {
-    pronoun: "YOUR",
+    letter: "YOUR",
     description: "Signed by extending an open palm toward the person you are addressing.",
     tips: [
       "Palm should face upward or toward the person.",
@@ -90,7 +90,7 @@ export const PronounsData: indexPronouns[] = [
     isLearned: false
   },
   {
-    pronoun: "OUR",
+    letter: "OUR",
     description: "Signed by moving an open hand in a small arc across your chest.",
     tips: [
       "Movement should be smooth and controlled.",
@@ -101,7 +101,7 @@ export const PronounsData: indexPronouns[] = [
     isLearned: false
   },
   {
-    pronoun: "THEIR",
+    letter: "THEIR",
     description: "Signed by extending an open hand toward the group’s assigned location in signing space.",
     tips: [
       "Use spatial referencing for clarity.",
@@ -112,7 +112,7 @@ export const PronounsData: indexPronouns[] = [
     isLearned: false
   },
   {
-    pronoun: "MYSELF",
+    letter: "MYSELF",
     description: "Signed by pointing to your chest with both hands or emphasizing the sign for I.",
     tips: [
       "Use both hands for emphasis.",
@@ -123,7 +123,7 @@ export const PronounsData: indexPronouns[] = [
     isLearned: false
   },
   {
-    pronoun: "YOURSELF",
+    letter: "YOURSELF",
     description: "Signed by pointing toward the person with both hands for emphasis.",
     tips: [
       "Use stronger facial expression.",
