@@ -46,7 +46,7 @@ export function AlphabetLearningPage() {
       {/* Back button to retun to categories cards */}
       <div className="max-w-6xl mx-auto w-full flex flex-col gap-6">
         <button
-          onClick={() => navigate("/learning")}
+          onClick={() => navigate("/learning/CategoryCardsPage")}
           className="text-blue-500 text-sm hover:underline self-start"
         >
           ← Back to Categories

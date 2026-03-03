@@ -6,6 +6,8 @@ import { DashboardPage } from "./features/dashboard/components/dashboardPage";
 import { LearnPage } from "./features/learningsP/learnPage";
 import { AlphabetLearningPage } from "./features/learningAlphabet/AlphabetLearningPage";
 import { PronounLearningPage } from "./features/LearningPronouns/PronounLearningPage";
+import { CategoryCardsPage } from "./features/learningsP/CategoryCardsPage";
+import { NumberLearningPage } from "./features/LearningNumbers/NumberLearningPage";
 
 function App() {
   return (
@@ -28,9 +30,19 @@ function App() {
                 element={<AlphabetLearningPage />}
               />
               <Route
+                path="/learning/numbers"
+                element={<NumberLearningPage />}
+              />
+              <Route
                 path="/learning/pronouns"
                 element={<PronounLearningPage />}
               />
+
+              <Route
+                path="/learning/CategoryCardsPage"
+                element={<CategoryCardsPage />}
+              />
+
               <Route path="/history" element={<div>History Page</div>} />
               {/* Add routes*/}
             </Routes>

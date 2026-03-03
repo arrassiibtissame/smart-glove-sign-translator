@@ -6,40 +6,40 @@ import { useNavigate } from "react-router-dom";
 import { ModeSelector } from "../learningAlphabet/ModeSelector";
 import { ProgressBar } from "../learningAlphabet/ProgressBar";
 import { MainLetterCard } from "../learningAlphabet/MainLetterCard";
-import { PronounsData } from "@/Data/pronounsData";
+import { NumbersData } from "@/Data/NumbersData";
 
-export function PronounLearningPage() {
+export function NumberLearningPage() {
   const [curentIndex, setCurrentIndex] = useState(0);
-  const [learnedPronouns, setLearnedPronouns] = useState<boolean[]>(
-    new Array(PronounsData.length).fill(false),
+  const [learnedNumbers, setLearnedNumbers] = useState<boolean[]>(
+    new Array(NumbersData.length).fill(false),
   );
   const [currentMode, setCurrentMode] = useState<Mode>("Learn");
-  // to bring the current pronounfrom PronounsData.ts based on the current index
-  const currentLetter = PronounsData[curentIndex];
-  //this variable to store how many true boolean value we have (depedns on teh learned pronouns ) so we will display it in teh progress bar
-  const learnedCount = learnedPronouns.filter(Boolean).length;
+  // to bring the current number from NumbersData.ts based on the current index
+  const currentNumber = NumbersData[curentIndex];
+  //this variable to store how many true boolean value we have (depedns on teh learned numbers ) so we will display it in teh progress bar
+  const learnedCount = learnedNumbers.filter(Boolean).length;
   const navigate = useNavigate();
-  //teh function will handle teh state of lerend pronouns to set it to true when the user has learned the pronoun and clicked next button and also will update teh currentIndex to move to the next letter
+  //teh function will handle teh state of lerend numbers to set it to true when the user has learned the number and clicked next button and also will update teh currentIndex to move to the next number
   const handleNext = () => {
-    const updated = [...learnedPronouns];
+    const updated = [...learnedNumbers];
     updated[curentIndex] = true;
-    setLearnedPronouns(updated);
-    if (curentIndex < PronounsData.length - 1) {
+    setLearnedNumbers(updated);
+    if (curentIndex < NumbersData.length - 1) {
       setCurrentIndex(curentIndex + 1);
     }
   };
-  //The function will handle the back button to change teh value of the currentIndex to move to the previous pronoun
+  //The function will handle the back button to change teh value of the currentIndex to move to the previous number
   const handleBack = () => {
     if (curentIndex > 0) {
       setCurrentIndex(curentIndex - 1);
     }
   };
-  //the function  will set the currentIndex to which pronoun the user has selected using teh LetterGrid in the buttom
+  //the function  will set the currentIndex to which number the user has selected using teh LetterGrid in the buttom
   const handleSelectLetter = (index: number) => {
     setCurrentIndex(index);
   };
   // just to test everything works before building UI
-  console.log("current pronoun:", currentLetter);
+  console.log("current number:", currentNumber);
   console.log("learned count:", learnedCount);
   console.log("mode:", currentMode);
 
@@ -56,9 +56,9 @@ export function PronounLearningPage() {
 
         {/* Title + description */}
         <div className="text-center">
-          <h1 className="text-3xl font-bold text-gray-900">ASL Pronouns</h1>
+          <h1 className="text-3xl font-bold text-gray-900">ASL Numbers</h1>
           <p className="text-gray-500 text-sm">
-            Master the American Sign Language pronouns
+            Master the American Sign Language numbers from 0 to 10
           </p>
         </div>
 
@@ -67,25 +67,25 @@ export function PronounLearningPage() {
         {/* Progress Bar  will show the progerss of the user whil elearning or practicing or doing a test*/}
         <ProgressBar
           current={curentIndex + 1}
-          total={PronounsData.length}
+          total={NumbersData.length}
           learned={learnedCount}
         />
 
-        {/* Main content of pronoun learning goes here */}
+        {/* Main content of number learning goes here */}
         <MainLetterCard
           currentIndex={curentIndex}
           onNext={handleNext}
           onPrevious={handleBack}
-          total={PronounsData.length}
-          data={PronounsData}
+          total={NumbersData.length}
+          data={NumbersData}
         />
         {/* QuickReference goes here after */}
         <div className="max-w-6xl mx-auto w-full">
           <QuickAlphReference
             currentIndex={curentIndex}
-            learned={learnedPronouns}
+            learned={learnedNumbers}
             onSelect={handleSelectLetter}
-            data={PronounsData}
+            data={NumbersData}
           />
         </div>
       </div>
