@@ -9,9 +9,9 @@ export default function SignUp({ onLogin }: Props) {
   const navigate = useNavigate();
    function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
   e.preventDefault();
-  console.log("Sign up success");
+  console.log("Sign up success!");
   onLogin(); // this tells App the user is logged in
-    navigate("/dashboard"); // go to dashboard
+   navigate("/dashboard");
 }
 
   return (
@@ -31,17 +31,17 @@ export default function SignUp({ onLogin }: Props) {
   <img
     src={Logo}
     alt="SignBridge Logo"
-    className="w-10 mb-2"
+    className="w-20 mb-1"
   />
 
-  <h1 className="text-2xl font-semibold text-gray-900">
-    Welcome to <span className="text-blue-600 font-bold">SignBridge</span>
+  <h1 className="text-2xl font-semibold mb-5 text-gray-900">
+    Welcome to <span className="text-blue-600 font-bold ">SignBridge</span>
   </h1>
 
 </div>
 
             {/* Title */}
-            <h2 className="text-2xl font-semibold mb-2">
+            <h2 className="text-2xl font-semibold mb-1">
               Create an account
             </h2>
 
@@ -110,7 +110,7 @@ export default function SignUp({ onLogin }: Props) {
 <img
   src={authImage}
   alt="signup visual"
-  className="absolute inset-0 w-full h-full object-cover"
+  className="absolute inset-0 w-full h-full object-cover object-center"
 />
 
           <div className="absolute bottom-10 left-10 text-white max-w-sm">

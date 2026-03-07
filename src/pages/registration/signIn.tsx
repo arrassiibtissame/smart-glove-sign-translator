@@ -75,9 +75,9 @@ export default function SignIn({ onLogin }: Props) {
         <div className="w-full md:w-1/2 p-10 flex flex-col justify-center">
 
           {/* Logo */}
-          <div className="flex flex-col items-center mb-6">
+          <div className="flex flex-col items-center mb-10">
 
-            <img src={Logo} alt="Logo" className="w-10 mb-2" />
+            <img src={Logo} alt="Logo" className="w-20 mb-3" />
 
             <h1 className="text-xl font-semibold">
               Welcome Back
