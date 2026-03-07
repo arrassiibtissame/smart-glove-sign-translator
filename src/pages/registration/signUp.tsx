@@ -29,7 +29,7 @@ export default function SignUp({ onLogin }: Props) {
   <img
     src={Logo}
     alt="SignBridge Logo"
-    className="w-10 mb-2"
+    className="w-20 mb-3"
   />
 
   <h1 className="text-2xl font-semibold text-gray-900">
@@ -108,7 +108,7 @@ export default function SignUp({ onLogin }: Props) {
 <img
   src={authImage}
   alt="signup visual"
-  className="absolute inset-0 w-full h-full object-cover"
+  className="absolute inset-0 w-full h-full object-cover object-center"
 />
 
           <div className="absolute bottom-10 left-10 text-white max-w-sm">
