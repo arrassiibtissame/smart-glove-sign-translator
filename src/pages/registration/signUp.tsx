@@ -31,17 +31,17 @@ export default function SignUp({ onLogin }: Props) {
   <img
     src={Logo}
     alt="SignBridge Logo"
-    className="w-20 mb-3"
+    className="w-20 mb-1"
   />
 
-  <h1 className="text-2xl font-semibold text-gray-900">
-    Welcome to <span className="text-blue-600 font-bold">SignBridge</span>
+  <h1 className="text-2xl font-semibold mb-5 text-gray-900">
+    Welcome to <span className="text-blue-600 font-bold ">SignBridge</span>
   </h1>
 
 </div>
 
             {/* Title */}
-            <h2 className="text-2xl font-semibold mb-2">
+            <h2 className="text-2xl font-semibold mb-1">
               Create an account
             </h2>
 
