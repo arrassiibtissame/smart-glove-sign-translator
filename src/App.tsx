@@ -9,6 +9,9 @@ import { LearnPage } from "@/features/learningsP/learnPage";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  function handleLogout() {
+  setIsLoggedIn(false);
+}
 
   return (
     <Routes>
@@ -29,7 +32,7 @@ function App() {
           path="/*"
           element={
             <div style={{ display: "flex", minHeight: "100vh" }}>
-              <SideBar />
+              <SideBar onLogout={handleLogout} />
               <div style={{ flex: 1, display: "flex", flexDirection: "column" }}>
                 <Header />
                 <main style={{ flex: 1 }}>
