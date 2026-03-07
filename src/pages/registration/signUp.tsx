@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import authImage from "@/assets/signUP.jpg";
 import Logo from "@/assets/Logo.png"; 
 type Props = {
@@ -6,10 +6,14 @@ type Props = {
 };
 
 export default function SignUp({ onLogin }: Props) {
-    function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  const navigate = useNavigate();
+   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
   e.preventDefault();
-  onLogin();
+  console.log("Sign up success");
+  onLogin(); // this tells App the user is logged in
+    navigate("/dashboard"); // go to dashboard
 }
+
   return (
 <div className="min-h-screen flex items-center justify-center bg-gray-200 p-6">
 
