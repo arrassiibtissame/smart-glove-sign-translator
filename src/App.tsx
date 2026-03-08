@@ -77,9 +77,7 @@ function App() {
                 }
               />
 
-              <Route path="/learning/Colors" element={<ColorsLearningPage />} />
-
-              <Route path="/history" element={<HistoryPage />} />
+             
               {/* Add routes*/}
             </Routes>
           </main>
