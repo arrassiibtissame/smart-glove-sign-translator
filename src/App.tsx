@@ -5,10 +5,10 @@ import { Header } from "./components/Layout/Header";
 import { DashboardPage } from "./features/dashboard/components/dashboardPage";
 import { LearnPage } from "./features/learningsP/learnPage";
 import { AlphabetLearningPage } from "./features/learningAlphabet/AlphabetLearningPage";
-import { PronounLearningPage } from "./features/LearningPronouns/PronounLearningPage";
 import { CategoryCardsPage } from "./features/learningsP/CategoryCardsPage";
 import { NumberLearningPage } from "./features/LearningNumbers/NumberLearningPage";
 import { LearningGreetingsPage } from "./features/LearningGreetings/LearningGreetingsPage";
+import { ColorsLearningPage } from "./features/LearningColors/ColorsLearningPage";
 
 function App() {
   return (
@@ -34,10 +34,6 @@ function App() {
                 path="/learning/numbers"
                 element={<NumberLearningPage />}
               />
-              <Route
-                path="/learning/pronouns"
-                element={<PronounLearningPage />}
-              />
 
               <Route
                 path="/learning/CategoryCardsPage"
@@ -47,6 +43,8 @@ function App() {
                 path="/learning/Greetings"
                 element={<LearningGreetingsPage />}
               />
+
+              <Route path="/learning/Colors" element={<ColorsLearningPage />} />
 
               <Route path="/history" element={<div>History Page</div>} />
               {/* Add routes*/}
