@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { AlphabetCard } from "./AlphabetCard";
 import { NumbersCard } from "./NumberCard";
-import { PronounsCard } from "./PronounCard";
+import { ColorsCard } from "./ColorsCard";
 
 export function CategoryCardsPage() {
   const navigate = useNavigate();
@@ -25,7 +25,7 @@ export function CategoryCardsPage() {
       <div className="grid grid-cols-3 gap-6 ">
         <AlphabetCard />
         <NumbersCard />
-        <PronounsCard />
+        <ColorsCard />
       </div>
     </div>
   );
