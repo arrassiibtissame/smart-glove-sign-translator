@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { User, Languages, HelpCircle } from "lucide-react";
-import { ProfileSettings } from "../components/settings/profileSettings";
-import { LanguageSettings } from "../components/settings/languageSettings";
-import { HelpSettings} from "../components/settings/helpSettings";
+import { ProfileSettings } from "../components/settings/profilSettings";
+import { LanguageSettings } from "../components/settings/LanguageSettings";
+import { HelpSettings} from "../components/settings/HelpSettings";
 import { Button } from "../components/ui/button";
 import { toast, Toaster } from "sonner";
 
