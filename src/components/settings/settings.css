@@ -1,6 +1,6 @@
 /* Settings Page Styles */
 
-/* Header  */
+/* Header Banner */
 .settings-header {
   position: relative;
   height: 12rem;
@@ -180,8 +180,9 @@
   outline: none;
 }
 
-.some-class:focus {
+.form-input:focus {
   box-shadow: 0 0 0 2px #3b82f6;
+  border-color: transparent;
 }
 
 /* Language Settings */
@@ -216,8 +217,9 @@
   outline: none;
 }
 
-.some-class:focus {
+.language-select:focus {
   box-shadow: 0 0 0 2px #3b82f6;
+  border-color: transparent;
 }
 
 .translation-tip {
@@ -367,8 +369,9 @@
   font-size: 0.875rem;
 }
 
-.some-class:focus {
+.feedback-textarea:focus {
   box-shadow: 0 0 0 2px #3b82f6;
+  border-color: transparent;
 }
 
 .feedback-actions {

@@ -1,4 +1,12 @@
 import { Hand } from "lucide-react";
+import { Label } from "../ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../ui/select";
 
 interface LanguageSettingsProps {
   language: string;
@@ -24,37 +32,37 @@ export function LanguageSettings({
         </p>
       </div>
 
-      <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
-          Sign Language
-        </label>
-        <select
-          value={language}
-          onChange={(e) => onLanguageChange(e.target.value)}
-          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
-        >
-          <option value="asl">American Sign Language (ASL)</option>
-          
-        </select>
+      <div className="space-y-2">
+        <Label htmlFor="signLanguage">Sign Language</Label>
+        <Select value={language} onValueChange={onLanguageChange}>
+          <SelectTrigger id="signLanguage">
+            <SelectValue placeholder="Select sign language" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="asl">American Sign Language (ASL)</SelectItem>
+          </SelectContent>
+        </Select>
+        <p className="text-xs text-gray-500 mt-1">
+          Currently, only American Sign Language is supported
+        </p>
       </div>
 
-      <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
-          Translation Language
-        </label>
-        <select
-          value={targetLanguage}
-          onChange={(e) => onTargetLanguageChange(e.target.value)}
-          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
-        >
-          <option value="en">English</option>
-          <option value="es">Spanish</option>
-          <option value="fr">French</option>
-          <option value="de">German</option>
-          <option value="ja">Japanese</option>
-          <option value="zh">Chinese</option>
-          <option value="ar">Arabic</option>
-        </select>
+      <div className="space-y-2">
+        <Label htmlFor="targetLanguage">Translation Language</Label>
+        <Select value={targetLanguage} onValueChange={onTargetLanguageChange}>
+          <SelectTrigger id="targetLanguage">
+            <SelectValue placeholder="Select translation language" />
+          </SelectTrigger>
+          <SelectContent className="bg-white text-black">
+            <SelectItem value="en">English</SelectItem>
+            <SelectItem value="es">Spanish</SelectItem>
+            <SelectItem value="fr">French</SelectItem>
+            <SelectItem value="de">German</SelectItem>
+            <SelectItem value="ja">Japanese</SelectItem>
+            <SelectItem value="zh">Chinese</SelectItem>
+            <SelectItem value="ar">Arabic</SelectItem>
+          </SelectContent>
+        </Select>
       </div>
 
       <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
@@ -64,7 +72,7 @@ export function LanguageSettings({
             <h4 className="font-medium text-blue-900 mb-1">Translation Tip</h4>
             <p className="text-sm text-blue-700">
               For best results, ensure your glove is properly connected via
-              Wifi and fitted snugly on your hand for accurate gesture
+            Wifi and fitted snugly on your hand for accurate gesture
               recognition.
             </p>
           </div>
