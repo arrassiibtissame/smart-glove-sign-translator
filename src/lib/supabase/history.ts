@@ -1,6 +1,7 @@
 import { supabase } from "./client";
 
-export const saveTranslation = async (
+// Save translation history
+export const saveHistory = async (
   userId: string,
   input: string,
   output: string
@@ -12,12 +13,4 @@ export const saveTranslation = async (
       output,
     },
   ]);
-};
-
-export const getHistory = async (userId: string) => {
-  return await supabase
-    .from("history")
-    .select("*")
-    .eq("user_id", userId)
-    .order("created_at", { ascending: false });
 };
