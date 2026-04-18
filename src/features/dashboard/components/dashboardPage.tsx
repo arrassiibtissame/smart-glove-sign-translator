@@ -1,14 +1,22 @@
+import { useState } from "react";
 import { AslInputCard } from "./AslInputCard";
 import { QuickTipCard } from "./QuickTipCard";
 import { TranslationCard } from "./translationCard";
 
 export function DashboardPage() {
+  const [translation, setTranslation] = useState("");
+
   return (
     <div className="flex-1 p-6">
-      <div className=" grid gap-6 md:grid-cols-2">
-        <AslInputCard />
-        <TranslationCard />
+      <div className="grid gap-6 md:grid-cols-2">
+        
+        {/* INPUT */}
+        <AslInputCard setTranslation={setTranslation} />
+
+        {/* OUTPUT */}
+        <TranslationCard translation={translation} />
       </div>
+
       <div className="mt-9">
         <QuickTipCard />
       </div>
