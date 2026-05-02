@@ -4,11 +4,9 @@ import authImage from "@/assets/signUP.jpg";
 import Logo from "@/assets/Logo.png";
 import { supabase } from "@/lib/supabase/client";
 
-type Props = {
-  onLogin: () => void;
-};
 
-export default function SignUp({ onLogin }: Props) {
+
+export default function SignUp() {
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
@@ -63,7 +61,7 @@ export default function SignUp({ onLogin }: Props) {
         avatar_url: null,
       });
 
-      onLogin();
+     
       navigate("/dashboard");
     }
 

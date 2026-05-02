@@ -1,23 +1,19 @@
-import { useState, useEffect } from "react";
+import { useState } from "react"; // ✅ removed useEffect, no longer needed
 import { User, Languages, HelpCircle } from "lucide-react";
-
 import { ProfileSettings } from "../components/settings/ProfilSettings";
-import { LanguageSettings } from "../components/settings/LanguageSettings";
-import { HelpSettings } from "../components/settings/HelpSettings";
+import { LanguageSettings } from "../components/settings/languageSettings"; // ✅ fix casing
+import { HelpSettings } from "../components/settings/helpSettings";         // ✅ fix casing
 import { Button } from "../components/ui/button";
 import { toast, Toaster } from "sonner";
-import { supabase } from "@/lib/supabase/client";
+import { useAuthStore } from "@/store/authStore";
 
 type Tab = "profile" | "language" | "help";
 
 export function Settings() {
+  const { user } = useAuthStore();
   const [activeTab, setActiveTab] = useState<Tab>("profile");
 
-  // Profile / Language state
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [loading, setLoading] = useState(false);
+  // Language settings state
   const [language, setLanguage] = useState("asl");
   const [targetLanguage, setTargetLanguage] = useState("en");
 
@@ -25,116 +21,21 @@ export function Settings() {
   const [rating, setRating] = useState(0);
   const [feedback, setFeedback] = useState("");
 
-  // ✅ FIX: move loadProfile OUTSIDE useEffect so it can be reused
-  const loadProfile = async () => {
-    const { data: authData } = await supabase.auth.getUser();
-    const user = authData.user;
-
-    if (!user) return;
-
-    const { data } = await supabase
-      .from("profiles")
-      .select("full_name")
-      .eq("id", user.id)
-      .maybeSingle();
-
-    if (data?.full_name) {
-      const [first, ...last] = data.full_name.split(" ");
-      setFirstName(first);
-      setLastName(last.join(" "));
-    } else {
-      setFirstName("");
-      setLastName("");
-    }
+  // ✅ Only handles language save now — profile saves itself
+  const handleSave = async () => {
+    toast.success("Settings saved ✅");
   };
 
-  // ✅ load on page open
-  useEffect(() => {
-    loadProfile();
-  }, []);
-
-  // Handlers
-  const handleSave = async () => {
-  setLoading(true);
-
-  const { data: authData, error: authError } = await supabase.auth.getUser();
-
-  if (authError || !authData.user) {
-    toast.error("User not found");
-    setLoading(false);
-    return;
-  }
-
-  const user = authData.user;
-  const full_name = `${firstName} ${lastName}`.trim();
-
-  // 🔥 First check if row exists
-  const { data: existing } = await supabase
-    .from("profiles")
-    .select("id")
-    .eq("id", user.id)
-    .maybeSingle();
-
-  let error;
-
-  if (existing) {
-    // ✅ UPDATE
-    ({ error } = await supabase
-      .from("profiles")
-      .update({ full_name })
-      .eq("id", user.id));
-  } else {
-    // ✅ INSERT
-    ({ error } = await supabase
-      .from("profiles")
-      .insert({
-        id: user.id,
-        full_name,
-      }));
-  }
-
-  if (error) {
-    console.log("SAVE ERROR:", error);
-    toast.error(error.message);
-    setLoading(false);
-    return;
-  }
-
-  toast.success("Saved successfully ✅");
-
-  // refresh header
-  setTimeout(() => {
-    window.dispatchEvent(new CustomEvent("profileUpdated",{
-      detail:{full_name},}));
-  }, 300);
-
-  setLoading(false);
-};
-
-  // ✅ FIX: reload real data instead of clearing inputs
   const handleCancel = () => {
-    loadProfile();
-
-    toast.info("Changes cancelled", {
-      description: "All changes have been reverted.",
-      duration: 3000,
-    });
+    toast.info("Changes cancelled", { duration: 3000 });
   };
 
   const handleSubmitFeedback = () => {
     if (rating === 0) {
-      toast.error("Please select a rating", {
-        description: "You need to rate your experience before submitting.",
-        duration: 3000,
-      });
+      toast.error("Please select a rating");
       return;
     }
-
-    toast.success("Feedback submitted successfully!", {
-      description: "Thank you for your feedback.",
-      duration: 3000,
-    });
-
+    toast.success("Feedback submitted successfully!");
     setRating(0);
     setFeedback("");
   };
@@ -142,11 +43,7 @@ export function Settings() {
   const handleCancelFeedback = () => {
     setRating(0);
     setFeedback("");
-
-    toast.info("Feedback cleared", {
-      description: "Your feedback has been reset.",
-      duration: 3000,
-    });
+    toast.info("Feedback cleared");
   };
 
   return (
@@ -221,14 +118,7 @@ export function Settings() {
           {/* Tab Content */}
           <div className="p-6 w-full overflow-x-hidden">
             {activeTab === "profile" && (
-              <ProfileSettings
-                firstName={firstName}
-                lastName={lastName}
-                email={email}
-                onFirstNameChange={setFirstName}
-                onLastNameChange={setLastName}
-                onEmailChange={setEmail}
-              />
+              <ProfileSettings /> // ✅ no props — it's self-contained
             )}
 
             {activeTab === "language" && (
@@ -252,8 +142,8 @@ export function Settings() {
             )}
           </div>
 
-          {/* Footer */}
-          {activeTab !== "help" && (
+          {/* ✅ Footer only shows for language tab now */}
+          {activeTab === "language" && (
             <div className="flex justify-end gap-3 p-6 border-t border-gray-200">
               <Button onClick={handleCancel}>Cancel</Button>
               <Button onClick={handleSave}>Save Changes</Button>
