@@ -4,11 +4,9 @@ import authImage from "@/assets/signUP.jpg";
 import Logo from "@/assets/Logo.png";
 import { supabase } from "@/lib/supabase/client";
 
-type Props = {
-  onLogin: () => void;
-};
 
-export default function SignUp({ onLogin }: Props) {
+
+export default function SignUp() {
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
@@ -63,7 +61,7 @@ export default function SignUp({ onLogin }: Props) {
         avatar_url: null,
       });
 
-      onLogin();
+     
       navigate("/dashboard");
     }
 
@@ -148,6 +146,15 @@ export default function SignUp({ onLogin }: Props) {
               >
                 {loading ? "Creating..." : "Sign Up"}
               </button>
+              <p className="text-sm text-gray-500 mt-4 text-center">
+  Already have an account? 
+  <span 
+    className="text-blue-600 cursor-pointer ml-1"
+    onClick={() => navigate("/login")}
+  >
+    Sign in
+  </span>
+</p>
 
             </form>
 
@@ -157,6 +164,11 @@ export default function SignUp({ onLogin }: Props) {
         {/* RIGHT */}
         <div className="w-1/2 hidden md:block relative">
           <img src={authImage} className="absolute w-full h-full object-cover" />
+          <div className="absolute bottom-6 left-6 text-white max-w-sm">
+    <p className="text-lg font-semibold leading-snug">
+      Break communication barriers with sign language translation
+    </p>
+  </div>
         </div>
 
       </div>

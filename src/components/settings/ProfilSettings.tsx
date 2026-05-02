@@ -2,25 +2,20 @@ import { useEffect, useState } from "react";
 import { Camera } from "lucide-react";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
+import { useAuthStore } from "@/store/authStore"; // ✅ use store instead of raw supabase auth
 import { supabase } from "@/lib/supabase/client";
 
 export function ProfileSettings() {
+  const { user } = useAuthStore(); // ✅ get user from store
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
-  const [userId, setUserId] = useState("");
-
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
-  // LOAD USER
   const loadProfile = async () => {
-    const { data } = await supabase.auth.getUser();
-    const user = data.user;
-
     if (!user) return;
 
-    setUserId(user.id);
     setEmail(user.email || "");
 
     const { data: profile } = await supabase
@@ -29,23 +24,18 @@ export function ProfileSettings() {
       .eq("id", user.id)
       .maybeSingle();
 
-    const fullName =
-      profile?.full_name ||
-      user.user_metadata?.full_name ||
-      "";
-
+    const fullName = profile?.full_name || "";
     const parts = fullName.split(" ");
-
     setFirstName(parts[0] || "");
     setLastName(parts.slice(1).join(" ") || "");
   };
 
   useEffect(() => {
-    loadProfile();
-  }, []);
+    if (user) loadProfile();
+  }, [user]); // ✅ re-runs when user is available
 
-  // SAVE
   const handleSave = async () => {
+    if (!user) return;
     setLoading(true);
     setMessage("");
 
@@ -53,70 +43,57 @@ export function ProfileSettings() {
 
     const { error } = await supabase
       .from("profiles")
-      .upsert({
-        id: userId,
-        full_name,
-      });
+      .upsert({ id: user.id, full_name }); // ✅ use user.id from store
 
     if (error) {
       setMessage(error.message);
     } else {
       setMessage("Profile updated successfully ✅");
-
-      
+      window.dispatchEvent(new CustomEvent("profileUpdated", { detail: { full_name } }));
       await loadProfile();
     }
 
     setLoading(false);
   };
 
-  const initials =
-    (firstName?.[0] || "") + (lastName?.[0] || "") || "U";
+  const handleCancel = () => {
+    loadProfile();
+    setMessage("");
+  };
+
+  const initials = (firstName?.[0] || "") + (lastName?.[0] || "") || "U";
 
   return (
     <div className="space-y-6">
 
       {/* AVATAR */}
       <div className="flex items-start gap-6">
-
         <div className="relative">
           <div className="w-24 h-24 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center text-white text-2xl font-bold">
             {initials}
           </div>
-
           <button className="absolute bottom-0 right-0 w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white">
             <Camera className="w-4 h-4" />
           </button>
         </div>
-
         <div>
           <h3 className="text-lg font-semibold">Profile Picture</h3>
           <p className="text-sm text-gray-500">
             Upload a photo to personalize your account
           </p>
         </div>
-
       </div>
 
       {/* NAME */}
       <div className="grid grid-cols-2 gap-4">
-
         <div className="space-y-2">
           <Label>First name</Label>
-          <Input
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
-          />
+          <Input value={firstName} onChange={(e) => setFirstName(e.target.value)} />
         </div>
-
         <div className="space-y-2">
           <Label>Last name</Label>
-          <Input
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
-          />
+          <Input value={lastName} onChange={(e) => setLastName(e.target.value)} />
         </div>
-
       </div>
 
       {/* EMAIL */}
@@ -127,11 +104,27 @@ export function ProfileSettings() {
 
       {/* MESSAGE */}
       {message && (
-        <p className="text-sm text-gray-600">{message}</p>
+        <p className={`text-sm ${message.includes("✅") ? "text-green-600" : "text-red-600"}`}>
+          {message}
+        </p>
       )}
 
-   
-     
+      {/* ✅ Save/Cancel buttons moved here */}
+      <div className="flex justify-end gap-3 pt-4 border-t border-gray-200">
+        <button
+          onClick={handleCancel}
+          className="px-4 py-2 border rounded-lg text-gray-600 hover:bg-gray-50"
+        >
+          Cancel
+        </button>
+        <button
+          onClick={handleSave}
+          disabled={loading}
+          className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50"
+        >
+          {loading ? "Saving..." : "Save Changes"}
+        </button>
+      </div>
 
     </div>
   );

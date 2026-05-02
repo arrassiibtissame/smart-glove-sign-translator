@@ -15,32 +15,29 @@ import SignIn from "@/pages/registration/signIn";
 import SignUp from "@/pages/registration/signUp";
 import SplashScreen from "@/components/SplashScreen/SplashScreen";
 import { Settings } from "@/pages/settings";
-import { supabase } from "@/lib/supabase/client"; // ✅ IMPORTANT
+import { useAuthStore } from "./store/authStore"; // ✅ only this, no supabase import needed here
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // ✅ MISSING BEFORE
+  const { user, loading, fetchUser, signOut } = useAuthStore(); // ✅ get everything from store
   const [splashFinished, setSplashFinished] = useState(false);
 
-  const handleLogout = async () => {
-    await supabase.auth.signOut(); // optional but better
-    setIsLoggedIn(false);
-  };
-
-  // ✅ CHECK SESSION ON LOAD
+  // ✅ Restore session on app load — replaces your manual checkSession
   useEffect(() => {
-    const checkSession = async () => {
-      const { data } = await supabase.auth.getSession();
-      if (data.session) {
-        setIsLoggedIn(true);
-      }
-    };
-
-    checkSession();
+    fetchUser();
   }, []);
 
-  // Splash screen
+  const handleLogout = async () => {
+    await signOut(); // ✅ store handles everything, no manual supabase call needed
+  };
+
+  // Show splash screen first
   if (!splashFinished) {
     return <SplashScreen onFinish={() => setSplashFinished(true)} />;
+  }
+
+  // ✅ Show nothing while checking session (prevents flicker to /signIn)
+  if (loading) {
+    return null; // or a loading spinner
   }
 
   return (
@@ -49,15 +46,15 @@ function App() {
         {/* AUTH ROUTES */}
         <Route
           path="/signIn"
-          element={<SignIn onLogin={() => setIsLoggedIn(true)} />}
+          element={<SignIn />} // ✅ no need to pass onLogin, store handles user state
         />
         <Route
           path="/signUp"
-          element={<SignUp onLogin={() => setIsLoggedIn(true)} />}
+          element={<SignUp />}
         />
 
         {/* PROTECTED ROUTES */}
-        {isLoggedIn ? (
+        {user ? ( // ✅ user from store instead of isLoggedIn state
           <Route
             path="/*"
             element={
